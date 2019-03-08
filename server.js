@@ -1,6 +1,6 @@
 const APP_SECRET = '1e7746e0f6846c771e1ed6278a9eb174';
 const VALIDATION_TOKEN = 'abc123';
-const PAGE_ACCESS_TOKEN = 'EAAlbeQf4ltcBAGkFqtgX7Dr99qXs8MivbUurBgDXi8vtoRLTDOhsLm8UwxLTCztnP5cK2z6NEnJ8jIBIYMTCnTkyUQJwFkIWIGA2dQFOOQ7z16o131JdNpZCCoNJY8upbV9vwJmwyeZAc1HPpARRQ0g69ZC25mIIIbHE45A8gix0dh8BnOc';
+const PAGE_ACCESS_TOKEN = 'EAAIYse2cvK8BABh8HZCLK9cZBMzl9BGEmNnNhvobB1wwGLNNKB1Gw0vNQZBOVZB426yNevZAHNQYB9PlO9v4ZCJ6B5xMbX8mTeubV91UZB5iYkrxUzonpBrSmbMrcZBql4qeFP9qyOzw2Jpjd29hEw4aWzXvFPyckye30g9NT6Wl566BEiO8uXJd';
 
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -18,14 +18,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhook', function (req, res) { // Đây là path để validate tooken bên app facebook gửi qua
+  console.log('in webhook get.. ...verify');
   if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
+    console.log('in webhook get.. ok verify');
     res.send(req.query['hub.challenge']);
   }
+  console.log('in webhook get.. errr verify');
   res.send('Error, wrong validation token');
 });
 
 app.post('/webhook', function (req, res) { // Phần sử lý tin nhắn của người dùng gửi đến
   var entries = req.body.entry;
+  console.log('in webhohok post..');
+  console.log(entries);
   for (var entry of entries) {
     var messaging = entry.messaging;
     for (var message of messaging) {
