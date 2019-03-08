@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhook', function (req, res) { // Đây là path để validate tooken bên app facebook gửi qua
-  console.log('in webhook get.. ...verify');
+  console.log(req.query);
   if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
     console.log('in webhook get.. ok verify');
     res.send(req.query['hub.challenge']);
