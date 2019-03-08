@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhook', function (req, res) { // Đây là path để validate tooken bên app facebook gửi qua
-  console.log(req.query['hub.verify_token']);
+  // console.log(req.query['hub.verify_token']);
   if (req.query['hub.verify_token'] === VALIDATION_TOKEN) {
     console.log('in webhook get.. ok verify');
     res.send(req.query['hub.challenge']);
@@ -69,5 +69,5 @@ app.set('port', process.env.PORT || 5000);
 app.set('ip', process.env.IP || "0.0.0.0");
 
 server.listen(app.get('port'), app.get('ip'), function () {
-  console.log("Chat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
+  console.log("Cdawdasdhat bot server listening at %s:%d ", app.get('ip'), app.get('port'));
 });
